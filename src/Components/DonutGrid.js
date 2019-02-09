@@ -21,10 +21,14 @@ class DonutGrid extends React.Component {
     }
 
     randomTimbit = () => {
-        let counter = 0;
-        while(counter < 10) {
-            let random = Math.floor(Math.random() * 6);
+        let score = 0;
+        // while(counter < 10) {
+        //     let random = Math.floor(Math.random() * 6);
+        //     this.show();
+        // }
+        for(let i = 0; i < 10; i++) {
             this.show();
+            console.log(i);
         }
     }
 
@@ -36,7 +40,7 @@ class DonutGrid extends React.Component {
     render() {
         return(
             <div>
-                <button style={{margin: '0 auto', marginBottom: "50px"}} onClick={this.show}>Start</button> 
+                <button style={{margin: '0 auto', marginBottom: "50px"}} onClick={this.randomTimbit}>Start</button> 
                 <div style={centered}>
                     <div style={grid}>
                         {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
