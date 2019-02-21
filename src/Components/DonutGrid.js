@@ -17,7 +17,9 @@ const centered = {
 class DonutGrid extends React.Component {
 
     state = {
-        isShowing: false
+        isShowing: false,
+        score: 0,
+        random: null
     }
 
     randomTimbit = () => {
@@ -30,6 +32,10 @@ class DonutGrid extends React.Component {
             this.show();
             console.log(i);
         }
+    }
+
+    scoreUpdate = () => {
+
     }
 
     show = () => {
