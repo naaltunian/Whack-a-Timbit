@@ -1,6 +1,9 @@
 import React from 'react';
 import bitBox from './Assets/bitBox.png';
 import timbits from './Assets/timbits.png';
+import Score from './Score';
+// import Timbit from './Timbit';
+// import Box from './Box';
 
 const grid = {
     display: 'grid',
@@ -19,7 +22,9 @@ class DonutGrid extends React.Component {
     state = {
         isShowing: false,
         score: 0,
-        random: null
+        random: null,
+        gridHeight: 3,
+        gridWidth: 3
     }
 
     randomTimbit = () => {
@@ -35,7 +40,7 @@ class DonutGrid extends React.Component {
     }
 
     scoreUpdate = () => {
-
+        this.setState({score: this.state.score + 1})
     }
 
     show = () => {
@@ -46,15 +51,16 @@ class DonutGrid extends React.Component {
     render() {
         return(
             <div>
-                <button style={{margin: '0 auto', marginBottom: "50px"}} onClick={this.randomTimbit}>Start</button> 
+                <button style={{margin: "50px 50%"}} onClick={this.randomTimbit}>Start</button> 
+                <Score score={this.state.score} />
                 <div style={centered}>
                     <div style={grid}>
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
                     </div>
                 </div>
             </div>
