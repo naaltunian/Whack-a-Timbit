@@ -3,7 +3,7 @@ import bitBox from './Assets/bitBox.png';
 import timbits from './Assets/timbits.png';
 import Score from './Score';
 // import Timbit from './Timbit';
-// import Box from './Box';
+import Box from './Box';
 
 const grid = {
     display: 'grid',
@@ -24,15 +24,12 @@ class DonutGrid extends React.Component {
         score: 0,
         random: null,
         gridHeight: 3,
-        gridWidth: 3
+        gridWidth: 3,
+        gridSize: 6
     }
 
     randomTimbit = () => {
         let score = 0;
-        // while(counter < 10) {
-        //     let random = Math.floor(Math.random() * 6);
-        //     this.show();
-        // }
         for(let i = 0; i < 10; i++) {
             this.show();
             console.log(i);
@@ -47,20 +44,20 @@ class DonutGrid extends React.Component {
         this.setState({isShowing: true});
         setInterval(() => this.setState({isShowing: false}), 1000);
     }
-
+    // <Image key={...} isShowing={ index === showThisIndex ? true : false }
     render() {
         return(
             <div>
-                <button style={{margin: "50px 50%"}} onClick={this.randomTimbit}>Start</button> 
+                <button style={{margin: "50px 50%"}} onClick={this.randomTimbit}>Start</button>
                 <Score score={this.state.score} />
                 <div style={centered}>
                     <div style={grid}>
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
-                        {this.state.isShowing ? <img onClick={this.scoreUpdate} src={timbits} alt="timbit" /> : <img src={bitBox} alt="box" />}
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="1" />
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="2" />
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="3" />
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="4" />
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="5" />
+                        <Box isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} value="6" />
                     </div>
                 </div>
             </div>
@@ -69,3 +66,7 @@ class DonutGrid extends React.Component {
 }
 
 export default DonutGrid;
+
+// {this.state.gridSize.map((image, i) => {
+//     return <Box key={i} isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} />
+// })}
