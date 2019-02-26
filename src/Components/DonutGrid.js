@@ -73,7 +73,3 @@ class DonutGrid extends React.Component {
 }
 
 export default DonutGrid;
-
-// {this.state.gridSize.map((image, i) => {
-//     return <Box key={i} isShowing={this.state.isShowing} scoreUpdate={this.scoreUpdate} />
-// })}
