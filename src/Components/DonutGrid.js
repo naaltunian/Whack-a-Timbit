@@ -24,15 +24,18 @@ class DonutGrid extends React.Component {
     }
 
     randomTimbit = (i) => {     
-        let game = setInterval(() => {
+         let game = setInterval(() => {
             let newRand =  Math.floor(Math.random() * 6);
             this.setState({ random: newRand, popUps: this.state.popUps + 1 });
             console.log(this.state.popUps);
+            if(this.state.popUps === 11) {
+                clearInterval(game);
+                if(this.state.score > this.state.highScore) {
+                    this.setState({ highScore: this.state.score })
+                }
+                this.setState({random: null, score: 0, popUps: 0});
+            }
         }, 800);
-        if(this.state.popUps === 10) {
-            clearInterval(game);
-            this.setState({random: null});
-        }
     }
 
     scoreUpdate = () => {
@@ -42,7 +45,7 @@ class DonutGrid extends React.Component {
     reset = () => {
         this.setState({ score: 0, highScore: 0 });
     }
-    
+
     render() {
         const { score, highScore } = this.state;
         return(
