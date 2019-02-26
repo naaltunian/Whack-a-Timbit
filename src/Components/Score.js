@@ -1,8 +1,13 @@
 import React from 'react';
 
+const style = {
+    margin: "0 50vw"
+}
+
 const Score = (props) => {
     return(
-        <div style={{margin: "0 50%"}}>
+        <div>
+            <p>High Score: {props.highScore}</p>
             <p>Score: {props.score}</p>
         </div>
     )

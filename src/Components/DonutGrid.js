@@ -18,6 +18,7 @@ class DonutGrid extends React.Component {
 
     state = {
         score: 0,
+        highScore: 0,
         random: null,
         popUps: 0
     }
@@ -39,15 +40,20 @@ class DonutGrid extends React.Component {
     }
 
     reset = () => {
-        this.setState({ score: 0 });
+        this.setState({ score: 0, highScore: 0 });
     }
+    
     render() {
-        const { isShowing } = this.state;
+        const { score, highScore } = this.state;
         return(
             <div>
-                <button style={{margin: "50px 50%"}} onClick={this.randomTimbit}>Start</button>
-                <Score score={this.state.score} />
-                <button style={{margin: "0 50%"}} onClick={this.reset}>Reset</button>
+                <span style={centered} className="game-btns">
+                    <button onClick={this.randomTimbit}>Start</button>
+                    <button onClick={this.reset}>Reset</button>
+                </span>
+                <span style={centered}>
+                    <Score score={score} highScore={highScore} />
+                </span>
                 <div style={centered}>
                     <div style={grid}>
                         <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={0} />

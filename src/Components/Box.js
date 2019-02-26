@@ -10,6 +10,9 @@ const Box = (props) => {
     )
 }
 
+export default Box;
+
+
 // class Box extends React.Component {
 
 //     state = {
@@ -47,5 +50,3 @@ const Box = (props) => {
 //         )
 //     }
 // }
-
-export default Box;
