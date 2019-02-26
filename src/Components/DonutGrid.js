@@ -23,7 +23,7 @@ class DonutGrid extends React.Component {
         popUps: 0
     }
 
-    randomTimbit = (i) => {     
+    randomTimbit = () => {     
          let game = setInterval(() => {
             let newRand =  Math.floor(Math.random() * 6);
             this.setState({ random: newRand, popUps: this.state.popUps + 1 });
