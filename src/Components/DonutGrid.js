@@ -1,8 +1,5 @@
 import React from 'react';
-import bitBox from './Assets/bitBox.png';
-import timbits from './Assets/timbits.png';
 import Score from './Score';
-// import Timbit from './Timbit';
 import Box from './Box';
 
 const grid = {
@@ -20,48 +17,45 @@ const centered = {
 class DonutGrid extends React.Component {
 
     state = {
-        isShowing: false,
         score: 0,
         random: null,
-        gridSize: 6,
-        start: false,
+        popUps: 0
     }
 
     randomTimbit = (i) => {     
-        let newRand =  Math.floor(Math.random() * 6);
-        this.setState({random: newRand})
+        let game = setInterval(() => {
+            let newRand =  Math.floor(Math.random() * 6);
+            this.setState({ random: newRand, popUps: this.state.popUps + 1 });
+            console.log(this.state.popUps);
+        }, 800);
+        if(this.state.popUps === 10) {
+            clearInterval(game);
+            this.setState({random: null});
+        }
     }
 
     scoreUpdate = () => {
-        this.setState({score: this.state.score + 1})
+        this.setState({score: this.state.score + 1});
     }
 
     reset = () => {
         this.setState({ score: 0 });
     }
-
-    // show = (random) => {
-    //     console.log(this.props.value)
-    //     if(this.props.value === random) {
-    //         this.setState({isShowing: true});
-    //         setInterval(() => this.setState({isShowing: false}), 1000);
-    //     }
-    // }
-    // <Image key={...} isShowing={ index === showThisIndex ? true : false }
     render() {
         const { isShowing } = this.state;
         return(
             <div>
                 <button style={{margin: "50px 50%"}} onClick={this.randomTimbit}>Start</button>
                 <Score score={this.state.score} />
+                <button style={{margin: "0 50%"}} onClick={this.reset}>Reset</button>
                 <div style={centered}>
                     <div style={grid}>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={0} ref="box" show={this.show}/>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={1} ref="box" show={this.show}/>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={2} ref="box" show={this.show}/>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={3} ref="box" show={this.show}/>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={4} ref="box" show={this.show}/>
-                        <Box random={this.state.random} isShowing={isShowing} scoreUpdate={this.scoreUpdate} value={5} ref="box" show={this.show}/>
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={0} />
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={1} />
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={2} />
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={3} />
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={4} />
+                        <Box random={this.state.random} scoreUpdate={this.scoreUpdate} value={5} />
                     </div>
                 </div>
             </div>
